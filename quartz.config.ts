@@ -16,7 +16,7 @@ const config: QuartzConfig = {
       provider: "plausible",
     },
     locale: "zh-CN",
-    baseUrl: "your-blog-domain.com", // 稍后需要替换为实际域名
+    baseUrl: "tech-blog-quartz.pages.dev",
     ignorePatterns: ["private", "templates", ".obsidian", "desktop.ini", "*.base", "github-recovery-codes.txt", "~$*"],
     defaultDateType: "created",
     theme: {
