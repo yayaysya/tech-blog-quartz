@@ -1,0 +1,1 @@
+“JavaScript” 指的是一种广泛用于网页开发的编程语言。Node.js 基于 JavaScript 运行，这使得前端 JavaScript 开发者能编写服务器端代码。在示例代码中，使用 JavaScript 编写了 Node.js 的 Web 服务器程序。同时，Node.js 可运行 V8 JavaScript 引擎，该引擎也是谷歌浏览器的核心

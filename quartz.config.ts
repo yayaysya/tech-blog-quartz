@@ -8,17 +8,17 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Quartz 4",
-    pageTitleSuffix: "",
+    pageTitle: "技术笔记博客",
+    pageTitleSuffix: " | 技术学习与分享",
     enableSPA: true,
     enablePopovers: true,
     analytics: {
       provider: "plausible",
     },
-    locale: "en-US",
-    baseUrl: "quartz.jzhao.xyz",
-    ignorePatterns: ["private", "templates", ".obsidian"],
-    defaultDateType: "modified",
+    locale: "zh-CN",
+    baseUrl: "your-blog-domain.com", // 稍后需要替换为实际域名
+    ignorePatterns: ["private", "templates", ".obsidian", "desktop.ini", "*.base", "github-recovery-codes.txt", "~$*"],
+    defaultDateType: "created",
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
