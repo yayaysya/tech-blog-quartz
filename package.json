@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "个人技术学习笔记博客",
   "scripts": {
-    "build": "npx quartz build",
-    "serve": "npx quartz build --serve",
-    "sync": "npx quartz sync"
+    "build": "npm install -g @jackyzha0/quartz && quartz build",
+    "serve": "npm install -g @jackyzha0/quartz && quartz build --serve",
+    "sync": "npm install -g @jackyzha0/quartz && quartz sync"
   },
   "dependencies": {},
   "devDependencies": {}
