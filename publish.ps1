@@ -1,5 +1,6 @@
 Param(
-  [switch]$Serve
+  [switch]$Serve,
+  [string[]]$EntryPatterns
 )
 
 Write-Host "[Quartz] 开始一键发布流程..." -ForegroundColor Cyan
@@ -16,6 +17,11 @@ if ($Serve) {
   npx quartz build --serve
   exit $LASTEXITCODE
 }
+
+# 导出（入口：publish:true / #publish；或通过 -EntryPatterns 指定）
+Write-Host "[Quartz] 导出入口笔记及依赖..." -ForegroundColor Yellow
+& (Join-Path $PSScriptRoot 'tools/Export-Notes.ps1') -SourceRoot (Join-Path $PSScriptRoot '..\noteBOOK') -DestRoot (Join-Path $PSScriptRoot 'content') -EntryPatterns $EntryPatterns
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 # 构建 & 同步
 Write-Host "[Quartz] 构建站点..." -ForegroundColor Yellow
