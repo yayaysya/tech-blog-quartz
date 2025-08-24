@@ -173,7 +173,11 @@ if ($EntryPatterns -and $EntryPatterns.Count -gt 0) {
     $entries += Get-ChildItem -Path $SourceRoot -Recurse -File -Include $pat -ErrorAction SilentlyContinue | Where-Object { $_.Extension -eq '.md' } | Select-Object -ExpandProperty FullName
   }
 } else {
-  $entries = Get-ChildItem -Path $SourceRoot -Recurse -File -Filter *.md | Where-Object { Test-IsPublishEntry -Path $_.FullName } | Select-Object -ExpandProperty FullName
+  $entries = @()
+  $mdFiles = @(Get-ChildItem -Path $SourceRoot -Recurse -File -Filter *.md -ErrorAction SilentlyContinue)
+  foreach ($file in $mdFiles) {
+    if ($null -ne $file -and (Test-IsPublishEntry -Path $file.FullName)) { $entries += $file.FullName }
+  }
 }
 
 Write-Info "Entry notes count: $($entries.Count)"
