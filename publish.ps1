@@ -33,7 +33,6 @@ if (-not $NoClean) {
 # 导出（入口：publish:true / #publish；或通过额外参数指定通配：npm run publish -- "1 卡片箱\\*.md"）
 Write-Host "[Quartz] 导出入口笔记及依赖..." -ForegroundColor Yellow
 & (Join-Path $PSScriptRoot 'tools/Export-Notes.ps1') -SourceRoot (Join-Path $PSScriptRoot '..\noteBOOK') -DestRoot (Join-Path $PSScriptRoot 'content') -EntryPatterns $args
-if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 # 自动提交导出结果
 try {
