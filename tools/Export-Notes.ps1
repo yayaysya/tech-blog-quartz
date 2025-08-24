@@ -133,7 +133,7 @@ function Export-Closure {
         Ensure-CopyFile -Src $file -Dst $dst
       }
 
-      $curDir = Split-Path -LiteralPath $file -Parent
+      $curDir = [System.IO.Path]::GetDirectoryName($file)
       $links  = Parse-Links -Path $file
       foreach ($ln in $links) {
         $resolved = Resolve-LinkPath -Link $ln -CurrentDir $curDir
