@@ -1,5 +1,6 @@
 Param(
   [switch]$Serve,
+  [Parameter(ValueFromRemainingArguments = $true)]
   [string[]]$EntryPatterns
 )
 
