@@ -127,9 +127,9 @@ function Export-Closure {
 
     if ($file.ToLower().EndsWith('.md')) {
       if (Test-IsDraft -Path $file) {
-        Write-Warn "草稿跳过(仅引用，不拷贝): $rel"
+        Write-Warn "Skip draft (reference only): $rel"
       } else {
-        Write-Info "拷贝笔记: $rel"
+        Write-Info "Copy note: $rel"
         Ensure-CopyFile -Src $file -Dst $dst
       }
 
@@ -142,13 +142,13 @@ function Export-Closure {
           if (-not (Test-IsDraft -Path $resolved)) {
             if (-not $visited.Contains($resolved)) { $visited.Add($resolved) | Out-Null; $queue.Enqueue($resolved) }
           } else {
-            Write-Warn "引用到草稿(不导出): $(Get-RelativePath $SourceRoot $resolved)"
+            Write-Warn "Reference to draft (not exported): $(Get-RelativePath $SourceRoot $resolved)"
           }
         } else {
           $relAsset = Get-RelativePath -BasePath $SourceRoot -FullPath $resolved
           if ($null -ne $relAsset -and ($imageExts -contains ([IO.Path]::GetExtension($resolved).ToLower()))) {
             $dstAsset = Join-Path $DestRoot $relAsset
-            Write-Info "拷贝资源: $relAsset"
+            Write-Info "Copy asset: $relAsset"
             Ensure-CopyFile -Src $resolved -Dst $dstAsset
           }
         }
@@ -156,7 +156,7 @@ function Export-Closure {
     } else {
       # 资源文件
       if ($imageExts -contains ([IO.Path]::GetExtension($file).ToLower())) {
-        Write-Info "拷贝资源: $rel"
+        Write-Info "Copy asset: $rel"
         Ensure-CopyFile -Src $file -Dst $dst
       }
     }
@@ -176,11 +176,11 @@ if ($EntryPatterns -and $EntryPatterns.Count -gt 0) {
   $entries = Get-ChildItem -Path $SourceRoot -Recurse -File -Filter *.md | Where-Object { Test-IsPublishEntry -Path $_.FullName } | Select-Object -ExpandProperty FullName
 }
 
-Write-Info "入口笔记数量: $($entries.Count)"
-if ($entries.Count -eq 0) { Write-Warn "未找到入口笔记（可在 frontmatter 设置 publish:true 或加 #publish 标签）"; exit 0 }
+Write-Info "Entry notes count: $($entries.Count)"
+if ($entries.Count -eq 0) { Write-Warn "No entry notes found (set publish:true or add #publish tag)"; exit 0 }
 
 Export-Closure -Entries $entries
 
-Write-Info "导出完成"
+Write-Info "Export done"
 
 
