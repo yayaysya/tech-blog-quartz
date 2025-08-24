@@ -83,8 +83,15 @@ function Resolve-LinkPath {
     }
   } else {
     $name = $clean
-    $items = Get-ChildItem -Path $SourceRoot -Recurse -File -ErrorAction SilentlyContinue | Where-Object {
-      $_.BaseName -eq $name
+    $ext = [System.IO.Path]::GetExtension($name)
+    if ([string]::IsNullOrEmpty($ext)) {
+      $items = Get-ChildItem -Path $SourceRoot -Recurse -File -ErrorAction SilentlyContinue | Where-Object {
+        $_.BaseName -eq $name
+      }
+    } else {
+      $items = Get-ChildItem -Path $SourceRoot -Recurse -File -ErrorAction SilentlyContinue | Where-Object {
+        $_.Name -eq $name
+      }
     }
     if ($items) {
       $candidate = ($items | Sort-Object { $_.FullName.Length } | Select-Object -First 1).FullName
