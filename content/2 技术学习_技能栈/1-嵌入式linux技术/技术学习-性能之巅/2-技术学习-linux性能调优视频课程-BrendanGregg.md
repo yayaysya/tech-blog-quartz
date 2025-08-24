@@ -1,7 +1,7 @@
----
+﻿---
 source: https://www.bilibili.com/video/BV1NXJTzfEcJ/?spm_id_from=333.337.search-card.all.click&vd_source=44477e339a9610883ef96bf6055082c8
 网址: https://www.brendangregg.com/linuxperf.html
-publish:true
+publish: true
 ---
 
 # 课程笔记

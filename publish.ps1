@@ -30,6 +30,13 @@ try {
   if ($pending) {
     Write-Host "[Quartz] Git commit 导出内容..." -ForegroundColor Yellow
     git commit -m "chore(content): auto export & stage content for publish" | Out-Null
+
+    # 立即推送到当前分支
+    $branch = (git rev-parse --abbrev-ref HEAD).Trim()
+    if (-not [string]::IsNullOrWhiteSpace($branch)) {
+      Write-Host "[Quartz] Git push origin $branch ..." -ForegroundColor Yellow
+      git push origin $branch | Out-Null
+    }
   } else {
     Write-Host "[Quartz] 无需提交（工作区无变化）" -ForegroundColor Yellow
   }
