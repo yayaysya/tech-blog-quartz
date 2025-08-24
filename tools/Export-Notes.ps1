@@ -1,6 +1,6 @@
 Param(
-  [string]$SourceRoot = (Join-Path $PSScriptRoot "..\noteBOOK"),
-  [string]$DestRoot   = (Join-Path $PSScriptRoot "content"),
+  [string]$SourceRoot = (Join-Path $PSScriptRoot "..\..\noteBOOK"),
+  [string]$DestRoot   = (Join-Path $PSScriptRoot "..\content"),
   [string[]]$EntryPatterns = @(),
   [switch]$DryRun
 )
