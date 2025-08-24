@@ -14,7 +14,7 @@
   "scripts": {
     "quartz": "./quartz/bootstrap-cli.mjs",
     "docs": "npx quartz build --serve -d docs",
-    "build": "npx quartz build",
+    "build": "node ./quartz/bootstrap-cli.mjs build",
     "serve": "powershell -NoProfile -ExecutionPolicy Bypass -File ./publish.ps1 -Serve",
     "sync": "npx quartz sync",
     "publish": "powershell -NoProfile -ExecutionPolicy Bypass -File ./publish.ps1",
