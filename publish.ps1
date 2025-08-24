@@ -1,7 +1,5 @@
 Param(
-  [switch]$Serve,
-  [Parameter(ValueFromRemainingArguments = $true)]
-  [string[]]$EntryPatterns
+  [switch]$Serve
 )
 
 Write-Host "[Quartz] 开始一键发布流程..." -ForegroundColor Cyan
@@ -19,9 +17,9 @@ if ($Serve) {
   exit $LASTEXITCODE
 }
 
-# 导出（入口：publish:true / #publish；或通过 -EntryPatterns 指定）
+# 导出（入口：publish:true / #publish；或通过额外参数指定通配：npm run publish -- "1 卡片箱\*.md"）
 Write-Host "[Quartz] 导出入口笔记及依赖..." -ForegroundColor Yellow
-& (Join-Path $PSScriptRoot 'tools/Export-Notes.ps1') -SourceRoot (Join-Path $PSScriptRoot '..\noteBOOK') -DestRoot (Join-Path $PSScriptRoot 'content') -EntryPatterns $EntryPatterns
+& (Join-Path $PSScriptRoot 'tools/Export-Notes.ps1') -SourceRoot (Join-Path $PSScriptRoot '..\noteBOOK') -DestRoot (Join-Path $PSScriptRoot 'content') -EntryPatterns $args
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 # 构建 & 同步
