@@ -59,7 +59,7 @@ function Get-RelativePath {
 function Ensure-CopyFile {
   param([string]$Src, [string]$Dst)
   if ($DryRun) { Write-Info "DRYRUN copy: $Src -> $Dst"; return }
-  $dstDir = Split-Path -LiteralPath $Dst -Parent
+  $dstDir = [System.IO.Path]::GetDirectoryName($Dst)
   if (-not (Test-Path -LiteralPath $dstDir)) { New-Item -ItemType Directory -Force -Path $dstDir | Out-Null }
   Copy-Item -LiteralPath $Src -Destination $Dst -Force
 }
