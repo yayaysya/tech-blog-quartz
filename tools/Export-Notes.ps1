@@ -14,7 +14,7 @@ function Write-Err($msg)   { Write-Host "[Export] $msg" -ForegroundColor Red }
 
 function Get-Frontmatter {
   param([string]$Path)
-  $lines = Get-Content -LiteralPath $Path -Encoding UTF8 -ErrorAction SilentlyContinue
+  $lines = @(Get-Content -LiteralPath $Path -Encoding UTF8 -ErrorAction SilentlyContinue)
   if ($null -eq $lines -or $lines.Count -lt 1) { return @{} }
   if ($lines[0] -ne '---') { return @{} }
   $fm = @{}
