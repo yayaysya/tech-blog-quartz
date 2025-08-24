@@ -169,8 +169,15 @@ if (-not (Test-Path -LiteralPath $DestRoot))   { New-Item -ItemType Directory -F
 # 选取入口笔记
 $entries = @()
 if ($EntryPatterns -and $EntryPatterns.Count -gt 0) {
+  $entries = @()
   foreach ($pat in $EntryPatterns) {
-    $entries += Get-ChildItem -Path $SourceRoot -Recurse -File -Include $pat -ErrorAction SilentlyContinue | Where-Object { $_.Extension -eq '.md' } | Select-Object -ExpandProperty FullName
+    if ([string]::IsNullOrWhiteSpace($pat)) { continue }
+    $absPattern = Join-Path $SourceRoot $pat
+    $files = @(Get-ChildItem -Path $absPattern -File -ErrorAction SilentlyContinue)
+    if ($files.Count -eq 0 -and (Test-Path -LiteralPath $absPattern -PathType Container)) {
+      $files = @(Get-ChildItem -Path $absPattern -File -Filter *.md -Recurse -ErrorAction SilentlyContinue)
+    }
+    foreach ($f in $files) { if ($null -ne $f) { $entries += $f.FullName } }
   }
 } else {
   $entries = @()
