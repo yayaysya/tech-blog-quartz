@@ -64,6 +64,36 @@ function Ensure-CopyFile {
   Copy-Item -LiteralPath $Src -Destination $Dst -Force
 }
 
+# Normalize YAML frontmatter: ensure colon-space, fix common keys, clear invalid date: 0
+function Normalize-Frontmatter {
+  param([string]$FilePath)
+  try {
+    $lines = @(Get-Content -LiteralPath $FilePath -Encoding UTF8 -ErrorAction Stop)
+    if ($lines.Count -eq 0) { return }
+    if ($lines[0] -ne '---') { return }
+    $endIdx = -1
+    for ($i = 1; $i -lt $lines.Count; $i++) { if ($lines[$i] -eq '---') { $endIdx = $i; break } }
+    if ($endIdx -lt 0) { return }
+    for ($j = 1; $j -lt $endIdx; $j++) {
+      $line = $lines[$j]
+      # add a space after colon if missing (key:value -> key: value)
+      $line = $line -replace '^(\s*[^:#]+):(\S)', '$1: $2'
+      # normalize publish/draft booleans (publish:true -> publish: true)
+      $line = $line -replace '^(\s*publish:)\s*true\s*$', '$1 true'
+      $line = $line -replace '^(\s*publish:)\s*false\s*$', '$1 false'
+      $line = $line -replace '^(\s*draft:)\s*true\s*$', '$1 true'
+      $line = $line -replace '^(\s*draft:)\s*false\s*$', '$1 false'
+      # handle invalid date: 0
+      $line = $line -replace '^(\s*date:)\s*0\s*$', '$1 ""'
+      $lines[$j] = $line
+    }
+    # write back
+    Set-Content -LiteralPath $FilePath -Value $lines -Encoding UTF8
+  } catch {
+    Write-Warn "Normalize frontmatter failed: $FilePath - $_"
+  }
+}
+
 function Resolve-LinkPath {
   param([string]$Link, [string]$CurrentDir)
   # Strip anchors or block refs
@@ -138,6 +168,7 @@ function Export-Closure {
       } else {
         Write-Info "Copy note: $rel"
         Ensure-CopyFile -Src $file -Dst $dst
+        Normalize-Frontmatter -FilePath $dst
       }
 
       $curDir = [System.IO.Path]::GetDirectoryName($file)
