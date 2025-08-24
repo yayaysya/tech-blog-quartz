@@ -1,4 +1,7 @@
-#publish
+﻿---
+publish: true
+---
+
 # 地址空间
 
 ## 进程空间和内核空间怎么划分
@@ -175,14 +178,14 @@ good_mm:
 这些标志的存在是为了让 VMA 的行为更加灵活和精细，以适应各种复杂的应用场景。
 我们可以通过一个表格来理解这种关系：
 
-|VMA 类型|访问权限标志|行为标志|举例|
-|---|---|---|---|
-|**代码段**|`VM_READ`、`VM_EXEC`|无`VM_WRITE`，可能`VM_SHARED`|多个进程共享 `/bin/bash` 的代码|
-|**数据段**|`VM_READ`、`VM_WRITE`|无`VM_EXEC`，可能`VM_SHARED`|共享库的全局变量|
-|**堆**|`VM_READ`、`VM_WRITE`|无`VM_EXEC`|动态分配的内存，如 `malloc`|
-|**栈**|`VM_READ`、`VM_WRITE`|无`VM_EXEC`|每个线程独立的栈空间|
-|**文件映射**|`VM_READ`、`VM_WRITE`|`VM_SHARED` 或私有|两个进程通过 `mmap` 共享文件数据|
-|**设备I/O映射**|`VM_READ`、`VM_WRITE`|`VM_IO`、`VM_RESERVED`|设备驱动程序映射硬件寄存器|
+| VMA 类型      | 访问权限标志               | 行为标志                      | 举例                     |
+| ----------- | -------------------- | ------------------------- | ---------------------- |
+| **代码段**     | `VM_READ`、`VM_EXEC`  | 无`VM_WRITE`，可能`VM_SHARED` | 多个进程共享 `/bin/bash` 的代码 |
+| **数据段**     | `VM_READ`、`VM_WRITE` | 无`VM_EXEC`，可能`VM_SHARED`  | 共享库的全局变量               |
+| **堆**       | `VM_READ`、`VM_WRITE` | 无`VM_EXEC`                | 动态分配的内存，如 `malloc`     |
+| **栈**       | `VM_READ`、`VM_WRITE` | 无`VM_EXEC`                | 每个线程独立的栈空间             |
+| **文件映射**    | `VM_READ`、`VM_WRITE` | `VM_SHARED` 或私有           | 两个进程通过 `mmap` 共享文件数据   |
+| **设备I/O映射** | `VM_READ`、`VM_WRITE` | `VM_IO`、`VM_RESERVED`     | 设备驱动程序映射硬件寄存器          |
 
 ##### `VM_SEQ_READ`/`VM_RAND_READ`
 

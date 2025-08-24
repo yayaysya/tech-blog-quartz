@@ -56,49 +56,49 @@ graph TB
     subgraph User Space
         App["感知算法 App"] -- "1.open('/dev/lidar')" --> FD["文件描述符 (fd)"]
         App -- "2.mmap(fd, ...)" --> Syscall["系统调用接口"]
-        UserVA["用户虚拟地址指针<br>(char* mapped_buffer)"]
+        UserVA["用户虚拟地址指针<br/>(char* mapped_buffer)"]
     end
 
     subgraph Kernel Space
         subgraph VFS Layer
-            Syscall -- "3.根据fd找到" --> FileStruct["struct file<br>(代表打开的文件会话)"]
-            FileStruct -- "f_op 指针" --> Fops["struct file_operations<br>(驱动的功能清单)"]
+            Syscall -- "3.根据fd找到" --> FileStruct["struct file<br/>(代表打开的文件会话)"]
+            FileStruct -- "f_op 指针" --> Fops["struct file_operations<br/>(驱动的功能清单)"]
         end
         
         subgraph Driver & Memory Management Layer
-            VMA["vm_area_struct (VMA)<br>(内存区域'地契')"]
-            Driver["LIDAR 驱动代码<br>(lidar_driver_mmap)"]
-            PageTables["进程页表<br>(CPU的地址翻译地图)"]
-            DMABuffer["DMA 缓冲区<br>(内核虚拟地址)"]
+            VMA["vm_area_struct (VMA)<br/>(内存区域'地契')"]
+            Driver["LIDAR 驱动代码<br/>(lidar_driver_mmap)"]
+            PageTables["进程页表<br/>(CPU的地址翻译地图)"]
+            DMABuffer["DMA 缓冲区<br/>(内核虚拟地址)"]
         end
     end
 
     subgraph Physical Hardware
         PhysMem["物理内存 RAM"]
-        LIDAR["LIDAR 硬件<br>+ DMA 控制器"]
+        LIDAR["LIDAR 硬件<br/>+ DMA 控制器"]
     end
 
-    %% --- 1.控制流 (Control Flow) - 建立映射 ---
+
     Syscall -- "4.创建" --> VMA
     Fops -- "5.VFS查找.mmap并调用" --> Driver
     Syscall -- "传递" --> Driver
-    Driver -- "6.remap_pfn_range()<br>修改页表" --> PageTables
+    Driver -- "6.remap_pfn_range()<br/>修改页表" --> PageTables
     
-    %% --- 逻辑链接与映射关系 ---
+
     UserVA -. "由VMA描述" .-> VMA
     VMA -. "通过页表实现" .-> PageTables
     PageTables -. "指向" .-> PhysMem
     DMABuffer -. "是...的内核视图" .-> PhysMem
     
-    %% --- 2.数据流 (Data Flow) - 零拷贝传输 ---
+
     LIDAR -- "7.[数据流] DMA直接写入" --> PhysMem
     App -- "8.[数据流] 直接内存读取" --> UserVA
     
-    %% --- 3.同步机制 ---
+
     LIDAR -- "9a. DMA完成中断" --> Driver
     Driver -- "9b. poll/ioctl通知" --> App
 
-    %% --- 样式 ---
+
     linkStyle 0 stroke-width:1.5px,fill:none,stroke:blue;
     linkStyle 1 stroke-width:1.5px,fill:none,stroke:blue;
     linkStyle 5 stroke-width:2.5px,fill:none,stroke:blue,stroke-dasharray: 5 5;

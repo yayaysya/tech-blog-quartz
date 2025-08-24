@@ -1,4 +1,7 @@
-#publish
+﻿---
+publish: true
+---
+
 # 文章走读
 
 >[!info] 已经走读目录

@@ -1,8 +1,9 @@
 ﻿---
 完成度: 100
 date_read: 2025-08-23T12:23:00
+publish: true
 ---
-#publish
+
 
 
 > [!question] 如何解决**磁盘 I/O** 操作速度远慢于**DDR内存访问速度**的性能瓶颈?
