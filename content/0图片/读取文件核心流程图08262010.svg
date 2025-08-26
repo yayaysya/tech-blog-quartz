@@ -1,0 +1,236 @@
+<svg width="900" height="700" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="900" height="700" fill="#f8f9fa"/>
+  
+  <!-- 标题 -->
+  <text x="450" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#333">Linux内核内存管理架构</text>
+  
+  <!-- task_struct区域 -->
+  <rect x="30" y="60" width="200" height="120" fill="#e8f5e8" stroke="#4caf50" stroke-width="2" rx="5"/>
+  <text x="130" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2e7d32">task_struct</text>
+  
+  <rect x="50" y="90" width="80" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="3"/>
+  <text x="90" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1b5e20">pid: 1234</text>
+  
+  <rect x="140" y="90" width="80" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="3"/>
+  <text x="180" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1b5e20">mm: ptr</text>
+  
+  <rect x="50" y="125" width="80" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="3"/>
+  <text x="90" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1b5e20">state</text>
+  
+  <rect x="140" y="125" width="80" height="25" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="3"/>
+  <text x="180" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1b5e20">active_mm</text>
+  
+  <!-- mm_struct区域 -->
+  <rect x="280" y="60" width="200" height="160" fill="#fff3e0" stroke="#ff9800" stroke-width="2" rx="5"/>
+  <text x="380" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#f57c00">mm_struct</text>
+  
+  <rect x="300" y="90" width="80" height="25" fill="#ffcc02" stroke="#ff8f00" stroke-width="1" rx="3"/>
+  <text x="340" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#e65100">pgd: ptr</text>
+  
+  <rect x="390" y="90" width="80" height="25" fill="#ffcc02" stroke="#ff8f00" stroke-width="1" rx="3"/>
+  <text x="430" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#e65100">mmap: ptr</text>
+  
+  <!-- VMA链表 -->
+  <rect x="300" y="130" width="70" height="30" fill="#ffe0b2" stroke="#f57c00" stroke-width="1" rx="3"/>
+  <text x="335" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#e65100">VMA1</text>
+  <text x="335" y="157" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#e65100">代码段</text>
+  
+  <rect x="300" y="170" width="70" height="30" fill="#ffe0b2" stroke="#f57c00" stroke-width="1" rx="3"/>
+  <text x="335" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#e65100">VMA2</text>
+  <text x="335" y="197" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#e65100">堆</text>
+  
+  <rect x="380" y="130" width="70" height="30" fill="#ffe0b2" stroke="#f57c00" stroke-width="1" rx="3"/>
+  <text x="415" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#e65100">VMA3</text>
+  <text x="415" y="157" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#e65100">栈</text>
+  
+  <rect x="380" y="170" width="70" height="30" fill="#ffe0b2" stroke="#f57c00" stroke-width="1" rx="3"/>
+  <text x="415" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#e65100">VMA4</text>
+  <text x="415" y="197" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#e65100">文件映射</text>
+  
+  <!-- 页表层次结构 -->
+  <rect x="520" y="60" width="150" height="160" fill="#e8eaf6" stroke="#3f51b5" stroke-width="2" rx="5"/>
+  <text x="595" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#3f51b5">页表层次</text>
+  
+  <rect x="540" y="90" width="110" height="25" fill="#c5cae9" stroke="#303f9f" stroke-width="1" rx="3"/>
+  <text x="595" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a237e">PGD (页全局目录)</text>
+  
+  <rect x="540" y="125" width="110" height="25" fill="#c5cae9" stroke="#303f9f" stroke-width="1" rx="3"/>
+  <text x="595" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a237e">PUD (页上级目录)</text>
+  
+  <rect x="540" y="160" width="110" height="25" fill="#c5cae9" stroke="#303f9f" stroke-width="1" rx="3"/>
+  <text x="595" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a237e">PMD (页中级目录)</text>
+  
+  <rect x="540" y="195" width="110" height="25" fill="#c5cae9" stroke="#303f9f" stroke-width="1" rx="3"/>
+  <text x="595" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1a237e">PTE (页表项)</text>
+  
+  <!-- 虚拟内存区域 -->
+  <rect x="700" y="60" width="150" height="160" fill="#fff3e0" stroke="#ff9800" stroke-width="2" rx="5"/>
+  <text x="775" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#f57c00">虚拟内存页</text>
+  
+  <rect x="720" y="90" width="110" height="25" fill="#ffcc02" stroke="#ff8f00" stroke-width="1" rx="3"/>
+  <text x="775" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#e65100">虚拟页1</text>
+  
+  <rect x="720" y="125" width="110" height="25" fill="#ffcc02" stroke="#ff8f00" stroke-width="1" rx="3"/>
+  <text x="775" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#e65100">虚拟页2</text>
+  
+  <rect x="720" y="160" width="110" height="25" fill="#ffcc02" stroke="#ff8f00" stroke-width="1" rx="3"/>
+  <text x="775" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#e65100">虚拟页3</text>
+  
+  <rect x="720" y="195" width="110" height="25" fill="#ffcc02" stroke="#ff8f00" stroke-width="1" rx="3"/>
+  <text x="775" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#e65100">...</text>
+  
+  <!-- 物理内存区域 -->
+  <rect x="520" y="260" width="330" height="100" fill="#fce4ec" stroke="#c2185b" stroke-width="2" rx="5"/>
+  <text x="685" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#c2185b">物理内存</text>
+  
+  <rect x="540" y="290" width="70" height="25" fill="#f8bbd9" stroke="#ad1457" stroke-width="1" rx="3"/>
+  <text x="575" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#880e4f">物理页1</text>
+  
+  <rect x="620" y="290" width="70" height="25" fill="#f8bbd9" stroke="#ad1457" stroke-width="1" rx="3"/>
+  <text x="655" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#880e4f">物理页2</text>
+  
+  <rect x="700" y="290" width="70" height="25" fill="#f8bbd9" stroke="#ad1457" stroke-width="1" rx="3"/>
+  <text x="735" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#880e4f">物理页3</text>
+  
+  <rect x="780" y="290" width="60" height="25" fill="#f8bbd9" stroke="#ad1457" stroke-width="1" rx="3"/>
+  <text x="810" y="305" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#880e4f">...</text>
+  
+  <rect x="540" y="325" width="70" height="25" fill="#f8bbd9" stroke="#ad1457" stroke-width="1" rx="3"/>
+  <text x="575" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#880e4f">物理页N</text>
+  
+  <rect x="620" y="325" width="70" height="25" fill="#f8bbd9" stroke="#ad1457" stroke-width="1" rx="3"/>
+  <text x="655" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#880e4f">物理页M</text>
+  
+  <!-- VFS文件系统区域 -->
+  <rect x="30" y="400" width="820" height="180" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="5"/>
+  <text x="440" y="390" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#7b1fa2">VFS (虚拟文件系统)</text>
+  
+  <!-- 文件夹结构 -->
+  <rect x="60" y="430" width="100" height="35" fill="#ce93d8" stroke="#8e24aa" stroke-width="1" rx="3"/>
+  <text x="110" y="448" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#4a148c">/bin</text>
+  <text x="110" y="460" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#4a148c">可执行文件</text>
+  
+  <rect x="180" y="430" width="100" height="35" fill="#ce93d8" stroke="#8e24aa" stroke-width="1" rx="3"/>
+  <text x="230" y="448" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#4a148c">/lib</text>
+  <text x="230" y="460" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#4a148c">动态库</text>
+  
+  <rect x="300" y="430" width="100" height="35" fill="#ce93d8" stroke="#8e24aa" stroke-width="1" rx="3"/>
+  <text x="350" y="448" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#4a148c">/usr</text>
+  <text x="350" y="460" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#4a148c">用户程序</text>
+  
+  <!-- 文件对象 -->
+  <rect x="60" y="480" width="80" height="25" fill="#ba68c8" stroke="#7b1fa2" stroke-width="1" rx="3"/>
+  <text x="100" y="495" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#4a148c">program.elf</text>
+  
+  <rect x="160" y="480" width="80" height="25" fill="#ba68c8" stroke="#7b1fa2" stroke-width="1" rx="3"/>
+  <text x="200" y="495" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#4a148c">libc.so</text>
+  
+  <rect x="260" y="480" width="80" height="25" fill="#ba68c8" stroke="#7b1fa2" stroke-width="1" rx="3"/>
+  <text x="300" y="495" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#4a148c">data.txt</text>
+  
+  <!-- inode -->
+  <rect x="60" y="520" width="80" height="25" fill="#9c27b0" stroke="#6a1b9a" stroke-width="1" rx="3"/>
+  <text x="100" y="535" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">inode 101</text>
+  
+  <rect x="160" y="520" width="80" height="25" fill="#9c27b0" stroke="#6a1b9a" stroke-width="1" rx="3"/>
+  <text x="200" y="535" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">inode 102</text>
+  
+  <rect x="260" y="520" width="80" height="25" fill="#9c27b0" stroke="#6a1b9a" stroke-width="1" rx="3"/>
+  <text x="300" y="535" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">inode 103</text>
+  
+  <!-- 磁盘存储 -->
+  <rect x="450" y="480" width="120" height="65" fill="#673ab7" stroke="#512da8" stroke-width="1" rx="3"/>
+  <text x="510" y="500" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white">磁盘存储</text>
+  <text x="510" y="515" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Block 1</text>
+  <text x="510" y="528" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">Block 2</text>
+  <text x="510" y="541" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">...</text>
+  
+  <!-- 另一个进程示例 -->
+  <rect x="30" y="250" width="200" height="80" fill="#e8f5e8" stroke="#4caf50" stroke-width="2" rx="5"/>
+  <text x="130" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2e7d32">另一个进程</text>
+  
+  <rect x="50" y="270" width="80" height="20" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="3"/>
+  <text x="90" y="282" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#1b5e20">pid: 5678</text>
+  
+  <rect x="140" y="270" width="80" height="20" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="3"/>
+  <text x="180" y="282" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#1b5e20">mm: ptr</text>
+  
+  <rect x="95" y="300" width="80" height="20" fill="#c8e6c9" stroke="#388e3c" stroke-width="1" rx="3"/>
+  <text x="135" y="312" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#1b5e20">独立的mm_struct</text>
+  
+  <!-- 线程示例 -->
+  <rect x="650" y="430" width="180" height="100" fill="#e1f5fe" stroke="#0277bd" stroke-width="2" rx="5"/>
+  <text x="740" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#0277bd">同进程内的线程</text>
+  
+  <rect x="670" y="450" width="70" height="20" fill="#b3e5fc" stroke="#0288d1" stroke-width="1" rx="3"/>
+  <text x="705" y="462" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#01579b">线程1</text>
+  
+  <rect x="750" y="450" width="70" height="20" fill="#b3e5fc" stroke="#0288d1" stroke-width="1" rx="3"/>
+  <text x="785" y="462" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#01579b">线程2</text>
+  
+  <rect x="710" y="480" width="80" height="30" fill="#81d4fa" stroke="#0277bd" stroke-width="1" rx="3"/>
+  <text x="750" y="495" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#01579b">共享同一个</text>
+  <text x="750" y="507" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#01579b">mm_struct</text>
+  
+  <!-- 箭头连接 -->
+  <!-- task_struct到mm_struct -->
+  <line x1="230" y1="102" x2="280" y2="102" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- mm_struct到页表 -->
+  <line x1="380" y1="102" x2="520" y2="102" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- mm_struct到VMA -->
+  <line x1="430" y1="115" x2="430" y2="130" stroke="#666" stroke-width="1" marker-end="url(#arrowhead)"/>
+  
+  <!-- VMA到虚拟内存 -->
+  <line x1="450" y1="145" x2="720" y2="102" stroke="#ff9800" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="450" y1="185" x2="720" y2="140" stroke="#ff9800" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- 页表到物理内存 -->
+  <line x1="650" y1="210" x2="720" y2="290" stroke="#3f51b5" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- 文件映射到VMA -->
+  <path d="M 350 480 Q 400 400 415 200" stroke="#7b1fa2" stroke-width="2" fill="none" stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
+  
+  <!-- 文件到inode -->
+  <line x1="100" y1="505" x2="100" y2="520" stroke="#666" stroke-width="1" marker-end="url(#arrowhead)"/>
+  <line x1="200" y1="505" x2="200" y2="520" stroke="#666" stroke-width="1" marker-end="url(#arrowhead)"/>
+  <line x1="300" y1="505" x2="300" y2="520" stroke="#666" stroke-width="1" marker-end="url(#arrowhead)"/>
+  
+  <!-- inode到磁盘 -->
+  <line x1="140" y1="532" x2="450" y2="512" stroke="#666" stroke-width="1" marker-end="url(#arrowhead)"/>
+  <line x1="240" y1="532" x2="450" y2="520" stroke="#666" stroke-width="1" marker-end="url(#arrowhead)"/>
+  <line x1="340" y1="532" x2="450" y2="528" stroke="#666" stroke-width="1" marker-end="url(#arrowhead)"/>
+  
+  <!-- 另一个进程到独立mm_struct -->
+  <line x1="230" y1="290" x2="260" y2="290" stroke="#4caf50" stroke-width="2" stroke-dasharray="3,3"/>
+  <text x="245" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#2e7d32">独立</text>
+  
+  <!-- 线程共享连接 -->
+  <line x1="750" y1="470" x2="380" y2="220" stroke="#0277bd" stroke-width="2" stroke-dasharray="3,3"/>
+  <text x="565" y="345" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#0277bd">共享</text>
+  
+  <!-- 箭头标记定义 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#666"/>
+    </marker>
+  </defs>
+  
+  <!-- 缺页异常流程 -->
+  <rect x="600" y="430" width="40" height="80" fill="#ffeb3b" stroke="#f57f17" stroke-width="2" rx="5" opacity="0.8"/>
+  <text x="620" y="445" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#f57f17">缺页</text>
+  <text x="620" y="455" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#f57f17">异常</text>
+  <text x="620" y="470" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#f57f17">1.查VMA</text>
+  <text x="620" y="480" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#f57f17">2.验证权限</text>
+  <text x="620" y="490" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#f57f17">3.分配物理页</text>
+  <text x="620" y="500" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#f57f17">4.更新页表</text>
+  
+  <!-- 说明文字 -->
+  <text x="30" y="630" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">关键设计要点:</text>
+  <text x="30" y="650" font-family="Arial, sans-serif" font-size="10" fill="#666">• 每个进程有独立的task_struct和mm_struct，但同进程内线程共享mm_struct</text>
+  <text x="30" y="665" font-family="Arial, sans-serif" font-size="10" fill="#666">• VMA定义内存区域策略，页表实现具体的地址翻译机制</text>
+  <text x="30" y="680" font-family="Arial, sans-serif" font-size="10" fill="#666">• 文件可通过mmap映射到VMA，实现文件内容与虚拟内存的直接关联</text>
+  <text x="30" y="695" font-family="Arial, sans-serif" font-size="10" fill="#666">• 缺页异常时，内核先检查VMA权限，再更新页表建立虚拟-物理页映射</text>
+</svg>

@@ -1,0 +1,460 @@
+<svg width="1277pt" height="813pt"
+ viewBox="0.00 0.00 1277.00 812.50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 808.5)">
+<title>%3</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-808.5 1273,-808.5 1273,4 -4,4"/>
+<g id="clust1" class="cluster">
+<title>cluster_user</title>
+<polygon fill="lightblue" stroke="lightblue" points="668,-637 668,-735 914,-735 914,-637 668,-637"/>
+<text text-anchor="middle" x="791" y="-719.8" font-family="Times,serif" font-size="14.00">用户空间</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_syscall</title>
+<polygon fill="lightyellow" stroke="lightyellow" points="83,-376 83,-735 203,-735 203,-376 83,-376"/>
+<text text-anchor="middle" x="143" y="-719.8" font-family="Times,serif" font-size="14.00">系统调用层</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_mm</title>
+<polygon fill="lightgreen" stroke="lightgreen" points="8,-89 8,-349 241,-349 241,-89 8,-89"/>
+<text text-anchor="middle" x="124.5" y="-333.8" font-family="Times,serif" font-size="14.00">内存管理子系统</text>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_fs</title>
+<polygon fill="lightpink" stroke="lightpink" points="249,-251 249,-735 485,-735 485,-251 249,-251"/>
+<text text-anchor="middle" x="367" y="-719.8" font-family="Times,serif" font-size="14.00">文件系统层</text>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_fault</title>
+<polygon fill="lightyellow" stroke="lightyellow" points="565,-170 565,-474 891,-474 891,-170 565,-170"/>
+<text text-anchor="middle" x="728" y="-458.8" font-family="Times,serif" font-size="14.00">缺页异常处理</text>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_io</title>
+<polygon fill="#e3f2fd" stroke="#e3f2fd" points="899,-8 899,-349 1215,-349 1215,-8 899,-8"/>
+<text text-anchor="middle" x="1057" y="-333.8" font-family="Times,serif" font-size="14.00">I/O子系统</text>
+</g>
+<g id="clust7" class="cluster">
+<title>cluster_hardware</title>
+<polygon fill="lightcoral" stroke="lightcoral" points="953,-376 953,-599 1133,-599 1133,-376 953,-376"/>
+<text text-anchor="middle" x="1043" y="-583.8" font-family="Times,serif" font-size="14.00">硬件层</text>
+</g>
+<!-- mmap_call -->
+<g id="node1" class="node">
+<title>mmap_call</title>
+<polygon fill="#e3f2fd" stroke="black" points="906.5,-681 813.5,-681 813.5,-645 906.5,-645 906.5,-681"/>
+<text text-anchor="middle" x="860" y="-660.5" font-family="SimHei" font-size="10.00">mmap()系统调用</text>
+</g>
+<!-- sys_mmap -->
+<g id="node3" class="node">
+<title>sys_mmap</title>
+<polygon fill="#fff3e0" stroke="black" points="195,-681 121,-681 121,-645 195,-645 195,-681"/>
+<text text-anchor="middle" x="158" y="-660.5" font-family="SimHei" font-size="10.00">sys_mmap()</text>
+</g>
+<!-- mmap_call&#45;&gt;sys_mmap -->
+<g id="edge1" class="edge">
+<title>mmap_call&#45;&gt;sys_mmap</title>
+<path fill="none" stroke="black" d="M851.34,-681.04C842.33,-697.48 826.51,-720.73 805,-731 748.85,-757.8 303.83,-751.26 245,-731 220.54,-722.58 197.7,-704.14 181.56,-688.59"/>
+<polygon fill="black" stroke="black" points="183.75,-685.83 174.2,-681.25 178.81,-690.79 183.75,-685.83"/>
+<text text-anchor="middle" x="592" y="-745.6" font-family="SimHei" font-size="8.00">系统调用</text>
+</g>
+<!-- memory_access -->
+<g id="node2" class="node">
+<title>memory_access</title>
+<polygon fill="#e3f2fd" stroke="black" points="795.5,-681 676.5,-681 676.5,-645 795.5,-645 795.5,-681"/>
+<text text-anchor="middle" x="736" y="-666" font-family="SimHei" font-size="10.00">访问映射内存</text>
+<text text-anchor="middle" x="736" y="-655" font-family="SimHei" font-size="10.00">*(char*)mapped_addr</text>
+</g>
+<!-- mmu_lookup -->
+<g id="node29" class="node">
+<title>mmu_lookup</title>
+<polygon fill="#ffebee" stroke="black" points="1041,-545 961,-545 961,-509 1041,-509 1041,-545"/>
+<text text-anchor="middle" x="1001" y="-524.5" font-family="SimHei" font-size="10.00">MMU页表查找</text>
+</g>
+<!-- memory_access&#45;&gt;mmu_lookup -->
+<g id="edge9" class="edge">
+<title>memory_access&#45;&gt;mmu_lookup</title>
+<path fill="none" stroke="black" d="M773.4,-644.95C783.5,-640.87 794.53,-636.87 805,-634 857.02,-619.76 877.77,-642.03 925,-616 951.34,-601.49 972.75,-574.07 986.06,-553.68"/>
+<polygon fill="black" stroke="black" points="989.06,-555.48 991.43,-545.15 983.14,-551.75 989.06,-555.48"/>
+<text text-anchor="middle" x="955" y="-609.6" font-family="SimHei" font-size="8.00">地址翻译</text>
+</g>
+<!-- vm_mmap_pgoff -->
+<g id="node4" class="node">
+<title>vm_mmap_pgoff</title>
+<polygon fill="#fff3e0" stroke="black" points="194.5,-545 91.5,-545 91.5,-509 194.5,-509 194.5,-545"/>
+<text text-anchor="middle" x="143" y="-524.5" font-family="SimHei" font-size="10.00">vm_mmap_pgoff()</text>
+</g>
+<!-- sys_mmap&#45;&gt;vm_mmap_pgoff -->
+<g id="edge2" class="edge">
+<title>sys_mmap&#45;&gt;vm_mmap_pgoff</title>
+<path fill="none" stroke="black" d="M156.07,-644.76C153.54,-622.14 149.07,-582.2 146.07,-555.42"/>
+<polygon fill="black" stroke="black" points="149.51,-554.73 144.92,-545.18 142.56,-555.5 149.51,-554.73"/>
+<text text-anchor="middle" x="170" y="-609.6" font-family="SimHei" font-size="8.00">参数处理</text>
+</g>
+<!-- do_mmap -->
+<g id="node5" class="node">
+<title>do_mmap</title>
+<polygon fill="#fff3e0" stroke="black" points="170.5,-420 99.5,-420 99.5,-384 170.5,-384 170.5,-420"/>
+<text text-anchor="middle" x="135" y="-399.5" font-family="SimHei" font-size="10.00">do_mmap()</text>
+</g>
+<!-- vm_mmap_pgoff&#45;&gt;do_mmap -->
+<g id="edge3" class="edge">
+<title>vm_mmap_pgoff&#45;&gt;do_mmap</title>
+<path fill="none" stroke="black" d="M141.89,-508.9C140.57,-488.63 138.36,-454.6 136.79,-430.59"/>
+<polygon fill="black" stroke="black" points="140.27,-430.11 136.13,-420.35 133.29,-430.56 140.27,-430.11"/>
+<text text-anchor="middle" x="158" y="-484.6" font-family="SimHei" font-size="8.00">核心逻辑</text>
+</g>
+<!-- mmap_region -->
+<g id="node6" class="node">
+<title>mmap_region</title>
+<polygon fill="#e8f5e8" stroke="black" points="146.5,-295 57.5,-295 57.5,-259 146.5,-259 146.5,-295"/>
+<text text-anchor="middle" x="102" y="-274.5" font-family="SimHei" font-size="10.00">mmap_region()</text>
+</g>
+<!-- do_mmap&#45;&gt;mmap_region -->
+<g id="edge4" class="edge">
+<title>do_mmap&#45;&gt;mmap_region</title>
+<path fill="none" stroke="black" d="M130.41,-383.9C124.95,-363.54 115.76,-329.29 109.32,-305.27"/>
+<polygon fill="black" stroke="black" points="112.63,-304.11 106.66,-295.35 105.87,-305.92 112.63,-304.11"/>
+<text text-anchor="middle" x="143" y="-359.6" font-family="SimHei" font-size="8.00">区域映射</text>
+</g>
+<!-- vm_area_alloc -->
+<g id="node7" class="node">
+<title>vm_area_alloc</title>
+<polygon fill="#e8f5e8" stroke="black" points="108.5,-214 15.5,-214 15.5,-178 108.5,-178 108.5,-214"/>
+<text text-anchor="middle" x="62" y="-193.5" font-family="SimHei" font-size="10.00">vm_area_alloc()</text>
+</g>
+<!-- mmap_region&#45;&gt;vm_area_alloc -->
+<g id="edge5" class="edge">
+<title>mmap_region&#45;&gt;vm_area_alloc</title>
+<path fill="none" stroke="black" d="M93.32,-258.86C88.03,-248.4 81.15,-234.83 75.2,-223.06"/>
+<polygon fill="black" stroke="black" points="78.3,-221.45 70.66,-214.11 72.06,-224.61 78.3,-221.45"/>
+<text text-anchor="middle" x="100.5" y="-234.6" font-family="SimHei" font-size="8.00">分配VMA</text>
+</g>
+<!-- file_mmap -->
+<g id="node12" class="node">
+<title>file_mmap</title>
+<polygon fill="#fce4ec" stroke="black" points="365.5,-681 258.5,-681 258.5,-645 365.5,-645 365.5,-681"/>
+<text text-anchor="middle" x="312" y="-666" font-family="SimHei" font-size="10.00">file&#45;&gt;f_op&#45;&gt;mmap()</text>
+<text text-anchor="middle" x="312" y="-655" font-family="SimHei" font-size="10.00">(如ext4_file_mmap)</text>
+</g>
+<!-- mmap_region&#45;&gt;file_mmap -->
+<g id="edge6" class="edge">
+<title>mmap_region&#45;&gt;file_mmap</title>
+<path fill="none" stroke="black" d="M112.04,-295.18C121.76,-310.72 137.7,-333.47 156,-349 175.55,-365.6 191.83,-355.32 207,-376 266.6,-457.26 200.79,-509.97 248,-599 255.91,-613.92 268.58,-627.48 280.56,-638.18"/>
+<polygon fill="black" stroke="black" points="278.41,-640.94 288.29,-644.77 282.96,-635.62 278.41,-640.94"/>
+<text text-anchor="middle" x="250" y="-484.6" font-family="SimHei" font-size="8.00">文件映射</text>
+</g>
+<!-- vma_link -->
+<g id="node8" class="node">
+<title>vma_link</title>
+<polygon fill="#e8f5e8" stroke="black" points="95.5,-133 28.5,-133 28.5,-97 95.5,-97 95.5,-133"/>
+<text text-anchor="middle" x="62" y="-112.5" font-family="SimHei" font-size="10.00">vma_link()</text>
+</g>
+<!-- vm_area_alloc&#45;&gt;vma_link -->
+<g id="edge8" class="edge">
+<title>vm_area_alloc&#45;&gt;vma_link</title>
+<path fill="none" stroke="black" d="M62,-177.86C62,-167.71 62,-154.63 62,-143.12"/>
+<polygon fill="black" stroke="black" points="65.5,-143.11 62,-133.11 58.5,-143.11 65.5,-143.11"/>
+<text text-anchor="middle" x="78.5" y="-153.6" font-family="SimHei" font-size="8.00">链接VMA</text>
+</g>
+<!-- find_vma -->
+<g id="node9" class="node">
+<title>find_vma</title>
+<polygon fill="#e8f5e8" stroke="black" points="233,-295 165,-295 165,-259 233,-259 233,-295"/>
+<text text-anchor="middle" x="199" y="-274.5" font-family="SimHei" font-size="10.00">find_vma()</text>
+</g>
+<!-- handle_mm_fault -->
+<g id="node10" class="node">
+<title>handle_mm_fault</title>
+<polygon fill="#e8f5e8" stroke="black" points="233.5,-214 126.5,-214 126.5,-178 233.5,-178 233.5,-214"/>
+<text text-anchor="middle" x="180" y="-193.5" font-family="SimHei" font-size="10.00">handle_mm_fault()</text>
+</g>
+<!-- find_vma&#45;&gt;handle_mm_fault -->
+<g id="edge12" class="edge">
+<title>find_vma&#45;&gt;handle_mm_fault</title>
+<path fill="none" stroke="black" d="M194.88,-258.86C192.44,-248.71 189.29,-235.63 186.52,-224.12"/>
+<polygon fill="black" stroke="black" points="189.86,-223.01 184.11,-214.11 183.05,-224.65 189.86,-223.01"/>
+<text text-anchor="middle" x="216" y="-234.6" font-family="SimHei" font-size="8.00">内存故障处理</text>
+</g>
+<!-- __handle_mm_fault -->
+<g id="node11" class="node">
+<title>__handle_mm_fault</title>
+<polygon fill="#e8f5e8" stroke="black" points="232.5,-133 115.5,-133 115.5,-97 232.5,-97 232.5,-133"/>
+<text text-anchor="middle" x="174" y="-112.5" font-family="SimHei" font-size="10.00">__handle_mm_fault()</text>
+</g>
+<!-- handle_mm_fault&#45;&gt;__handle_mm_fault -->
+<g id="edge13" class="edge">
+<title>handle_mm_fault&#45;&gt;__handle_mm_fault</title>
+<path fill="none" stroke="black" d="M178.7,-177.86C177.93,-167.71 176.93,-154.63 176.06,-143.12"/>
+<polygon fill="black" stroke="black" points="179.55,-142.81 175.3,-133.11 172.57,-143.34 179.55,-142.81"/>
+<text text-anchor="middle" x="195" y="-153.6" font-family="SimHei" font-size="8.00">核心处理</text>
+</g>
+<!-- handle_pte_fault -->
+<g id="node19" class="node">
+<title>handle_pte_fault</title>
+<polygon fill="#fff9c4" stroke="black" points="787,-420 683,-420 683,-384 787,-384 787,-420"/>
+<text text-anchor="middle" x="735" y="-399.5" font-family="SimHei" font-size="10.00">handle_pte_fault()</text>
+</g>
+<!-- __handle_mm_fault&#45;&gt;handle_pte_fault -->
+<g id="edge14" class="edge">
+<title>__handle_mm_fault&#45;&gt;handle_pte_fault</title>
+<path fill="none" stroke="black" d="M220.2,-133.09C282.56,-156.76 396.53,-202.17 489,-251 560.74,-288.88 573.44,-307.25 643,-349 659.7,-359.02 678.37,-369.68 694.51,-378.71"/>
+<polygon fill="black" stroke="black" points="693.24,-382.02 703.68,-383.83 696.65,-375.9 693.24,-382.02"/>
+<text text-anchor="middle" x="484" y="-234.6" font-family="SimHei" font-size="8.00">页表处理</text>
+</g>
+<!-- generic_file_mmap -->
+<g id="node13" class="node">
+<title>generic_file_mmap</title>
+<polygon fill="#fce4ec" stroke="black" points="370.5,-545 257.5,-545 257.5,-509 370.5,-509 370.5,-545"/>
+<text text-anchor="middle" x="314" y="-524.5" font-family="SimHei" font-size="10.00">generic_file_mmap()</text>
+</g>
+<!-- file_mmap&#45;&gt;generic_file_mmap -->
+<g id="edge7" class="edge">
+<title>file_mmap&#45;&gt;generic_file_mmap</title>
+<path fill="none" stroke="black" d="M312.26,-644.76C312.59,-622.14 313.19,-582.2 313.59,-555.42"/>
+<polygon fill="black" stroke="black" points="317.09,-555.23 313.74,-545.18 310.09,-555.12 317.09,-555.23"/>
+<text text-anchor="middle" x="330" y="-609.6" font-family="SimHei" font-size="8.00">通用映射</text>
+</g>
+<!-- filemap_fault -->
+<g id="node14" class="node">
+<title>filemap_fault</title>
+<polygon fill="#fce4ec" stroke="black" points="476,-681 390,-681 390,-645 476,-645 476,-681"/>
+<text text-anchor="middle" x="433" y="-660.5" font-family="SimHei" font-size="10.00">filemap_fault()</text>
+</g>
+<!-- find_get_page -->
+<g id="node15" class="node">
+<title>find_get_page</title>
+<polygon fill="#fce4ec" stroke="black" points="477.5,-545 388.5,-545 388.5,-509 477.5,-509 477.5,-545"/>
+<text text-anchor="middle" x="433" y="-524.5" font-family="SimHei" font-size="10.00">find_get_page()</text>
+</g>
+<!-- filemap_fault&#45;&gt;find_get_page -->
+<g id="edge18" class="edge">
+<title>filemap_fault&#45;&gt;find_get_page</title>
+<path fill="none" stroke="black" d="M433,-644.76C433,-622.14 433,-582.2 433,-555.42"/>
+<polygon fill="black" stroke="black" points="436.5,-555.18 433,-545.18 429.5,-555.18 436.5,-555.18"/>
+<text text-anchor="middle" x="454" y="-609.6" font-family="SimHei" font-size="8.00">查找缓存页</text>
+</g>
+<!-- page_cache_alloc -->
+<g id="node16" class="node">
+<title>page_cache_alloc</title>
+<polygon fill="#fce4ec" stroke="black" points="468.5,-420 349.5,-420 349.5,-384 468.5,-384 468.5,-420"/>
+<text text-anchor="middle" x="409" y="-399.5" font-family="SimHei" font-size="10.00">__page_cache_alloc()</text>
+</g>
+<!-- find_get_page&#45;&gt;page_cache_alloc -->
+<g id="edge19" class="edge">
+<title>find_get_page&#45;&gt;page_cache_alloc</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M429.66,-508.9C425.69,-488.54 419.01,-454.29 414.32,-430.27"/>
+<polygon fill="black" stroke="black" points="417.74,-429.5 412.39,-420.35 410.87,-430.84 417.74,-429.5"/>
+<text text-anchor="middle" x="447" y="-484.6" font-family="SimHei" font-size="8.00">缓存未命中</text>
+</g>
+<!-- finish_fault -->
+<g id="node22" class="node">
+<title>finish_fault</title>
+<polygon fill="#fff9c4" stroke="black" points="882.5,-420 805.5,-420 805.5,-384 882.5,-384 882.5,-420"/>
+<text text-anchor="middle" x="844" y="-399.5" font-family="SimHei" font-size="10.00">finish_fault()</text>
+</g>
+<!-- find_get_page&#45;&gt;finish_fault -->
+<g id="edge31" class="edge">
+<title>find_get_page&#45;&gt;finish_fault</title>
+<path fill="none" stroke="blue" stroke-width="2" d="M477.68,-524.08C562.65,-519.7 743.72,-506.72 796,-474 812.71,-463.54 824.98,-444.89 832.93,-429.33"/>
+<polygon fill="blue" stroke="blue" stroke-width="2" points="836.17,-430.67 837.33,-420.14 829.85,-427.65 836.17,-430.67"/>
+<text text-anchor="middle" x="792" y="-484.6" font-family="SimHei" font-size="8.00">缓存命中</text>
+</g>
+<!-- add_to_page_cache -->
+<g id="node17" class="node">
+<title>add_to_page_cache</title>
+<polygon fill="#fce4ec" stroke="black" points="477,-295 341,-295 341,-259 477,-259 477,-295"/>
+<text text-anchor="middle" x="409" y="-274.5" font-family="SimHei" font-size="10.00">add_to_page_cache_lru()</text>
+</g>
+<!-- page_cache_alloc&#45;&gt;add_to_page_cache -->
+<g id="edge20" class="edge">
+<title>page_cache_alloc&#45;&gt;add_to_page_cache</title>
+<path fill="none" stroke="black" d="M409,-383.9C409,-363.63 409,-329.6 409,-305.59"/>
+<polygon fill="black" stroke="black" points="412.5,-305.35 409,-295.35 405.5,-305.35 412.5,-305.35"/>
+<text text-anchor="middle" x="426" y="-359.6" font-family="SimHei" font-size="8.00">加入缓存</text>
+</g>
+<!-- readpage -->
+<g id="node24" class="node">
+<title>readpage</title>
+<polygon fill="#f3e5f5" stroke="black" points="1206.5,-295 1051.5,-295 1051.5,-259 1206.5,-259 1206.5,-295"/>
+<text text-anchor="middle" x="1129" y="-280" font-family="SimHei" font-size="10.00">mapping&#45;&gt;a_ops&#45;&gt;readpage()</text>
+<text text-anchor="middle" x="1129" y="-269" font-family="SimHei" font-size="10.00">(如ext4_readpage)</text>
+</g>
+<!-- add_to_page_cache&#45;&gt;readpage -->
+<g id="edge21" class="edge">
+<title>add_to_page_cache&#45;&gt;readpage</title>
+<path fill="none" stroke="black" d="M439.13,-295.07C468.9,-311.8 516.33,-335.46 561,-345 613.27,-356.16 991.47,-362.4 1042,-345 1066.46,-336.58 1089.3,-318.14 1105.44,-302.59"/>
+<polygon fill="black" stroke="black" points="1108.19,-304.79 1112.8,-295.25 1103.25,-299.83 1108.19,-304.79"/>
+<text text-anchor="middle" x="750" y="-359.6" font-family="SimHei" font-size="8.00">发起I/O</text>
+</g>
+<!-- page_fault -->
+<g id="node18" class="node">
+<title>page_fault</title>
+<polygon fill="#fff9c4" stroke="black" points="664.5,-420 573.5,-420 573.5,-384 664.5,-384 664.5,-420"/>
+<text text-anchor="middle" x="619" y="-399.5" font-family="SimHei" font-size="10.00">do_page_fault()</text>
+</g>
+<!-- page_fault&#45;&gt;find_vma -->
+<g id="edge11" class="edge">
+<title>page_fault&#45;&gt;find_vma</title>
+<path fill="none" stroke="black" d="M580.36,-383.89C554.97,-373.66 520.69,-361.75 489,-357 462.17,-352.98 268.62,-362.34 245,-349 227.95,-339.37 216.18,-320.51 208.82,-304.65"/>
+<polygon fill="black" stroke="black" points="211.96,-303.08 204.8,-295.27 205.52,-305.84 211.96,-303.08"/>
+<text text-anchor="middle" x="542.5" y="-359.6" font-family="SimHei" font-size="8.00">查找VMA</text>
+</g>
+<!-- do_fault -->
+<g id="node20" class="node">
+<title>do_fault</title>
+<polygon fill="#fff9c4" stroke="black" points="714.5,-295 651.5,-295 651.5,-259 714.5,-259 714.5,-295"/>
+<text text-anchor="middle" x="683" y="-274.5" font-family="SimHei" font-size="10.00">do_fault()</text>
+</g>
+<!-- handle_pte_fault&#45;&gt;do_fault -->
+<g id="edge15" class="edge">
+<title>handle_pte_fault&#45;&gt;do_fault</title>
+<path fill="none" stroke="black" d="M712.08,-383.7C706.69,-378.57 701.5,-372.55 698,-366 688.03,-347.35 684.43,-323.58 683.23,-305.45"/>
+<polygon fill="black" stroke="black" points="686.72,-305.08 682.78,-295.24 679.73,-305.39 686.72,-305.08"/>
+<text text-anchor="middle" x="715" y="-359.6" font-family="SimHei" font-size="8.00">文件缺页</text>
+</g>
+<!-- __do_fault -->
+<g id="node21" class="node">
+<title>__do_fault</title>
+<polygon fill="#fff9c4" stroke="black" points="701,-214 627,-214 627,-178 701,-178 701,-214"/>
+<text text-anchor="middle" x="664" y="-193.5" font-family="SimHei" font-size="10.00">__do_fault()</text>
+</g>
+<!-- do_fault&#45;&gt;__do_fault -->
+<g id="edge16" class="edge">
+<title>do_fault&#45;&gt;__do_fault</title>
+<path fill="none" stroke="black" d="M678.88,-258.86C676.44,-248.71 673.29,-235.63 670.52,-224.12"/>
+<polygon fill="black" stroke="black" points="673.86,-223.01 668.11,-214.11 667.05,-224.65 673.86,-223.01"/>
+<text text-anchor="middle" x="691" y="-234.6" font-family="SimHei" font-size="8.00">执行fault</text>
+</g>
+<!-- __do_fault&#45;&gt;filemap_fault -->
+<g id="edge17" class="edge">
+<title>__do_fault&#45;&gt;filemap_fault</title>
+<path fill="none" stroke="black" d="M626.76,-202.68C608.02,-207.44 586.49,-216.14 573,-232 533.58,-278.35 585.68,-320.76 545,-366 535.32,-376.76 523.24,-364.85 514,-376 450.28,-452.92 511.46,-502.41 486,-599 483.92,-606.9 483.53,-609.2 479,-616 473.96,-623.56 467.54,-630.92 461.1,-637.45"/>
+<polygon fill="black" stroke="black" points="458.37,-635.23 453.63,-644.7 463.24,-640.25 458.37,-635.23"/>
+<text text-anchor="middle" x="539" y="-400.1" font-family="SimHei" font-size="8.00">文件映射fault</text>
+</g>
+<!-- set_pte_at -->
+<g id="node23" class="node">
+<title>set_pte_at</title>
+<polygon fill="#fff9c4" stroke="black" points="854,-295 782,-295 782,-259 854,-259 854,-295"/>
+<text text-anchor="middle" x="818" y="-274.5" font-family="SimHei" font-size="10.00">set_pte_at()</text>
+</g>
+<!-- finish_fault&#45;&gt;set_pte_at -->
+<g id="edge29" class="edge">
+<title>finish_fault&#45;&gt;set_pte_at</title>
+<path fill="none" stroke="black" d="M806.64,-383.9C799.96,-379.09 793.89,-373.17 790,-366 779.37,-346.45 788.5,-322.23 799.09,-304.15"/>
+<polygon fill="black" stroke="black" points="802.29,-305.64 804.66,-295.31 796.36,-301.9 802.29,-305.64"/>
+<text text-anchor="middle" x="815" y="-359.6" font-family="SimHei" font-size="8.00">建立页表映射</text>
+</g>
+<!-- set_pte_at&#45;&gt;memory_access -->
+<g id="edge30" class="edge">
+<title>set_pte_at&#45;&gt;memory_access</title>
+<path fill="none" stroke="green" stroke-dasharray="5,2" d="M843.61,-295.02C862.32,-309.12 886.24,-331.02 897,-357 916.92,-405.09 910.79,-425.46 892,-474 865.23,-543.13 802.3,-605.5 765.06,-638.11"/>
+<polygon fill="green" stroke="green" points="762.37,-635.81 757.08,-644.99 766.94,-641.11 762.37,-635.81"/>
+<text text-anchor="middle" x="905" y="-484.6" font-family="SimHei" font-size="8.00">重新访问</text>
+</g>
+<!-- mpage_readpage -->
+<g id="node25" class="node">
+<title>mpage_readpage</title>
+<polygon fill="#f3e5f5" stroke="black" points="1194,-214 1090,-214 1090,-178 1194,-178 1194,-214"/>
+<text text-anchor="middle" x="1142" y="-193.5" font-family="SimHei" font-size="10.00">mpage_readpage()</text>
+</g>
+<!-- readpage&#45;&gt;mpage_readpage -->
+<g id="edge22" class="edge">
+<title>readpage&#45;&gt;mpage_readpage</title>
+<path fill="none" stroke="black" d="M1131.82,-258.86C1133.49,-248.71 1135.64,-235.63 1137.54,-224.12"/>
+<polygon fill="black" stroke="black" points="1141.01,-224.54 1139.18,-214.11 1134.11,-223.41 1141.01,-224.54"/>
+<text text-anchor="middle" x="1152" y="-234.6" font-family="SimHei" font-size="8.00">多页读取</text>
+</g>
+<!-- get_block -->
+<g id="node26" class="node">
+<title>get_block</title>
+<polygon fill="#f3e5f5" stroke="black" points="1200.5,-133 1097.5,-133 1097.5,-97 1200.5,-97 1200.5,-133"/>
+<text text-anchor="middle" x="1149" y="-118" font-family="SimHei" font-size="10.00">get_block()</text>
+<text text-anchor="middle" x="1149" y="-107" font-family="SimHei" font-size="10.00">(如ext4_get_block)</text>
+</g>
+<!-- mpage_readpage&#45;&gt;get_block -->
+<g id="edge23" class="edge">
+<title>mpage_readpage&#45;&gt;get_block</title>
+<path fill="none" stroke="black" d="M1143.52,-177.86C1144.42,-167.71 1145.58,-154.63 1146.6,-143.12"/>
+<polygon fill="black" stroke="black" points="1150.09,-143.38 1147.48,-133.11 1143.12,-142.76 1150.09,-143.38"/>
+<text text-anchor="middle" x="1157.5" y="-153.6" font-family="SimHei" font-size="8.00">块映射</text>
+</g>
+<!-- submit_bio -->
+<g id="node27" class="node">
+<title>submit_bio</title>
+<polygon fill="#f3e5f5" stroke="black" points="1201.5,-52 1124.5,-52 1124.5,-16 1201.5,-16 1201.5,-52"/>
+<text text-anchor="middle" x="1163" y="-31.5" font-family="SimHei" font-size="10.00">submit_bio()</text>
+</g>
+<!-- get_block&#45;&gt;submit_bio -->
+<g id="edge24" class="edge">
+<title>get_block&#45;&gt;submit_bio</title>
+<path fill="none" stroke="black" d="M1152.04,-96.86C1153.84,-86.71 1156.15,-73.63 1158.19,-62.12"/>
+<polygon fill="black" stroke="black" points="1161.67,-62.57 1159.97,-52.11 1154.78,-61.34 1161.67,-62.57"/>
+<text text-anchor="middle" x="1170" y="-72.6" font-family="SimHei" font-size="8.00">提交I/O</text>
+</g>
+<!-- block_device -->
+<g id="node30" class="node">
+<title>block_device</title>
+<polygon fill="#ffebee" stroke="black" points="1124.5,-545 1059.5,-545 1059.5,-509 1124.5,-509 1124.5,-545"/>
+<text text-anchor="middle" x="1092" y="-530" font-family="SimHei" font-size="10.00">块设备驱动</text>
+<text text-anchor="middle" x="1092" y="-519" font-family="SimHei" font-size="10.00">DMA传输</text>
+</g>
+<!-- submit_bio&#45;&gt;block_device -->
+<g id="edge25" class="edge">
+<title>submit_bio&#45;&gt;block_device</title>
+<path fill="none" stroke="black" d="M1192.7,-52.08C1212.53,-65.92 1235,-87.46 1235,-114 1235,-403 1235,-403 1235,-403 1235,-456.73 1176.25,-492.12 1134.06,-510.6"/>
+<polygon fill="black" stroke="black" points="1132.66,-507.39 1124.81,-514.5 1135.38,-513.84 1132.66,-507.39"/>
+<text text-anchor="middle" x="1252" y="-234.6" font-family="SimHei" font-size="8.00">设备驱动</text>
+</g>
+<!-- wait_on_page -->
+<g id="node28" class="node">
+<title>wait_on_page</title>
+<polygon fill="#f3e5f5" stroke="black" points="1033,-295 907,-295 907,-259 1033,-259 1033,-295"/>
+<text text-anchor="middle" x="970" y="-274.5" font-family="SimHei" font-size="10.00">wait_on_page_locked()</text>
+</g>
+<!-- wait_on_page&#45;&gt;finish_fault -->
+<g id="edge28" class="edge">
+<title>wait_on_page&#45;&gt;finish_fault</title>
+<path fill="none" stroke="black" d="M952.22,-295.35C930.41,-316.65 893.3,-352.88 868.72,-376.87"/>
+<polygon fill="black" stroke="black" points="866.23,-374.41 861.52,-383.9 871.12,-379.42 866.23,-374.41"/>
+<text text-anchor="middle" x="905" y="-359.6" font-family="SimHei" font-size="8.00">完成fault</text>
+</g>
+<!-- mmu_lookup&#45;&gt;page_fault -->
+<g id="edge10" class="edge">
+<title>mmu_lookup&#45;&gt;page_fault</title>
+<path fill="none" stroke="red" stroke-dasharray="5,2" d="M986.48,-508.96C976.95,-499.11 963.58,-487.58 949,-482 920.45,-471.07 701.25,-487.85 674,-474 655.18,-464.43 640.88,-445.12 631.58,-429.05"/>
+<polygon fill="red" stroke="red" points="634.55,-427.17 626.69,-420.06 628.4,-430.51 634.55,-427.17"/>
+<text text-anchor="middle" x="982" y="-484.6" font-family="SimHei" font-size="8.00">缺页异常</text>
+</g>
+<!-- interrupt -->
+<g id="node31" class="node">
+<title>interrupt</title>
+<polygon fill="#ffebee" stroke="black" points="1078,-420 1008,-420 1008,-384 1078,-384 1078,-420"/>
+<text text-anchor="middle" x="1043" y="-405" font-family="SimHei" font-size="10.00">中断处理</text>
+<text text-anchor="middle" x="1043" y="-394" font-family="SimHei" font-size="10.00">I/O完成通知</text>
+</g>
+<!-- block_device&#45;&gt;interrupt -->
+<g id="edge26" class="edge">
+<title>block_device&#45;&gt;interrupt</title>
+<path fill="none" stroke="black" d="M1085.19,-508.9C1077.04,-488.45 1063.31,-453.99 1053.73,-429.95"/>
+<polygon fill="black" stroke="black" points="1056.87,-428.35 1049.91,-420.35 1050.36,-430.94 1056.87,-428.35"/>
+<text text-anchor="middle" x="1094" y="-484.6" font-family="SimHei" font-size="8.00">DMA完成</text>
+</g>
+<!-- interrupt&#45;&gt;wait_on_page -->
+<g id="edge27" class="edge">
+<title>interrupt&#45;&gt;wait_on_page</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M1032.85,-383.9C1020.55,-363.18 999.71,-328.06 985.42,-303.99"/>
+<polygon fill="black" stroke="black" points="988.41,-302.17 980.3,-295.35 982.39,-305.74 988.41,-302.17"/>
+<text text-anchor="middle" x="1038" y="-359.6" font-family="SimHei" font-size="8.00">唤醒等待</text>
+</g>
+<!-- legend -->
+<g id="node32" class="node">
+<title>legend</title>
+<text text-anchor="middle" x="988" y="-680.8" font-family="SimHei" font-size="9.00">图例说明:</text>
+<text text-anchor="middle" x="988" y="-670.8" font-family="SimHei" font-size="9.00">━━━━ 正常流程</text>
+<text text-anchor="middle" x="988" y="-660.8" font-family="SimHei" font-size="9.00">&#45; &#45; &#45; &#45; 异常/条件流程</text>
+<text text-anchor="middle" x="988" y="-650.8" font-family="SimHei" font-size="9.00">━━━━ 缓存命中快速路径</text>
+<text text-anchor="middle" x="988" y="-640.8" font-family="SimHei" font-size="9.00">━━━━ 缺页异常流程</text>
+</g>
+</g>
+</svg>

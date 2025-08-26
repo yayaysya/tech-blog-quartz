@@ -65,14 +65,12 @@ static int ftrace_replace_code(struct ftrace_ops *ops, int enable)
 
 ```mermaid
 graph TD
-    %% Define Styles
     classDef userspace fill:#c9d4ff,stroke:#333,stroke-width:2px;
     classDef kernelspace fill:#d4ffc9,stroke:#333,stroke-width:2px;
     classDef memory fill:#fff2c9,stroke:#333,stroke-width:2px;
     classDef hardware fill:#ffc9c9,stroke:#333,stroke-width:2px;
     classDef io fill:#c9f1ff,stroke:#333,stroke-width:2px;
 
-    %% Phase 1: Activation
     subgraph "阶段一:激活(一次性设置)"
         A1("用户执行: echo function > current_tracer"):::userspace
         A2["内核 ftrace.c 核心逻辑<br>ftrace_replace_code()"]:::kernelspace
@@ -82,7 +80,6 @@ graph TD
         A1 --> A2 --> A3 --> A4
     end
 
-    %% Phase 2:Runtime Hot-Path
     subgraph "阶段二：事件捕获 (运行时 - 高频热路径)"
         B1("用户程序触发系统调用<br>(例如: ls 命令)"):::userspace
         B2["内核执行流, 即将进入 vfs_read()"]:::kernelspace
@@ -98,7 +95,6 @@ graph TD
         B6 -.-> B5 -.-> B4 -.-> B9
     end
 
-    %% Phase 3: Data Retrieval
     subgraph "阶段三：数据读取 (按需 - 冷路径)"
         C1("用户执行: cat trace"):::userspace
         C2{{"读取DebugFS文件<br>/sys/kernel/debug/tracing/trace"}}:::io
@@ -115,6 +111,7 @@ graph TD
     end
 ```
 
+---
 
 ## 如何在嵌入式设备上部署ftrace
 
@@ -154,7 +151,7 @@ graph TD
     
     **完成这一步后，您的设备就已经具备了 ftrace 的所有能力**。剩下的就是在设备上如何去“使用”它。
     
----
+
 
 ### 阶段二：在嵌入式设备上使用 ftrace
 
@@ -185,7 +182,7 @@ debugfs  /sys/kernel/debug  debugfs  defaults  0  0
 
 **示例：追踪所有进程对 `openat` 系统调用的进入事件**
 
-```Bash
+```shell
 # 进入ftrace的控制目录
 cd /sys/kernel/debug/tracing
 
@@ -210,7 +207,7 @@ cat trace
 
 您会看到类似这样的输出：
 
-```
+```shell
 # tracer: nop
 #
 # entries-in-buffer/entries-written: 1/1   #P:4
@@ -232,10 +229,10 @@ cat trace
 **如何在嵌入式系统上获得 `trace-cmd`?**
 您需要在PC上为其**交叉编译**。
 1. **在PC上下载源码**:
-    ```Bash
-    git clone https://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git
-    cd trace-cmd
-    ```
+```shell
+git clone https://git.kernel.org/pub/scm/utils/trace-cmd/trace-cmd.git
+cd trace-cmd
+```
     
 2. **交叉编译和安装**:
  
@@ -291,6 +288,4 @@ trace-cmd report
 ```shell
 root@song-com:/usr/lib# mount | grep debugfs
 debugfs on /sys/kernel/debug type debugfs (rw,nosuid,nodev,noexec,relatime)
-
-
 ```

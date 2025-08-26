@@ -903,7 +903,7 @@ graph TD
 ```
 ## ftrace
 #ftrace
-[[linux性能工具-tracing-ftrace]]
+[[linux性能工具-tracing-ftrace 原理]]
 
 ```shell title:trace中内容
             node-303679  [002] .... 257653.707327: sys_openat(dfd: ffffff9c, filename: 3fc39af0, flags: 0, mode: 0)
@@ -1006,7 +1006,7 @@ MIXED-Worker-0\ 500483 259678.708135:          3 cache-misses:
 
 ## ebpf
 在内核中汇总的, 直接输出直方图还有一些其他的热力图之类的
-#todo 
+在第15章节有详细的介绍
 
 
 
