@@ -3,7 +3,7 @@
 
 /* 正文字号 */
 .page article {
-  font-size: 18px;
+  font-size: 17px;
 }
 
 /* 标题行间距略增大 */
@@ -13,5 +13,46 @@
 .page article h4,
 .page article h5,
 .page article h6 {
-  line-height: 1.35;
+  line-height: 1.45;
 }
+
+/* 标题配色（亮色模式） */
+.page article h1,
+.page article h2,
+.page article h3,
+.page article h4,
+.page article h5,
+.page article h6 {color: #2b2b2c; }
+
+/* 让标题左侧“# 链接”与标题同色 */
+.page article h1 > a[role="anchor"],
+.page article h2 > a[role="anchor"],
+.page article h3 > a[role="anchor"],
+.page article h4 > a[role="anchor"],
+.page article h5 > a[role="anchor"],
+.page article h6 > a[role="anchor"] {
+  color: currentColor;
+}
+
+/* 标题间距（H1 最大，H6 最小） */
+.page article h1 { margin-top: 2.6rem; margin-bottom: 1.3rem; }
+.page article h2 { margin-top: 2.3rem; margin-bottom: 1.15rem; }
+.page article h3 { margin-top: 2.0rem; margin-bottom: 1.0rem; }
+.page article h4 { margin-top: 1.7rem; margin-bottom: 0.9rem; }
+.page article h5 { margin-top: 1.5rem; margin-bottom: 0.8rem; }
+.page article h6 { margin-top: 1.3rem; margin-bottom: 0.7rem; }
+
+/* 可选：移动端收窄一点间距 */
+@media (max-width: 768px) {
+  .page article h1 { margin-top: 2.2rem; margin-bottom: 1.1rem; }
+  .page article h2 { margin-top: 2.0rem; margin-bottom: 1.0rem; }
+  .page article h3 { margin-top: 1.7rem; margin-bottom: 0.9rem; }
+  .page article h4 { margin-top: 1.5rem; margin-bottom: 0.8rem; }
+  .page article h5 { margin-top: 1.3rem; margin-bottom: 0.7rem; }
+  .page article h6 { margin-top: 1.1rem; margin-bottom: 0.6rem; }
+}
+
+/* 1) 放宽整体容器宽度（默认较窄） */
+/* 容器占满屏幕宽度 */
+.page { max-width: 90vw; margin: 5vw; }
+
