@@ -1,4 +1,17 @@
 @use "./base.scss";
 @use "./themes";
 
-// put your custom CSS here!
+/* 正文字号 */
+.page article {
+  font-size: 18px;
+}
+
+/* 标题行间距略增大 */
+.page article h1,
+.page article h2,
+.page article h3,
+.page article h4,
+.page article h5,
+.page article h6 {
+  line-height: 1.35;
+}
