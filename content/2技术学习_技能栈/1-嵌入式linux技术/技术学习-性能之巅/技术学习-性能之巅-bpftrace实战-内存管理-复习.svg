@@ -1,0 +1,48 @@
+<svg width="900" height="420" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .title { font: 700 20px Arial; fill: #16a34a; }
+    .subtitle { font: 600 14px Arial; fill: #111827; }
+    .text { font: 12px Arial; fill: #111827; }
+    .muted { font: 11px Arial; fill: #6b7280; }
+    .box { rx: 8; fill: #f1f5f9; }
+    .flow { stroke: #16a34a; stroke-width: 2; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="10" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#16a34a" />
+    </marker>
+  </defs>
+  <rect x="10" y="10" width="880" height="400" rx="10" fill="#dcfce7" opacity="0.5"/>
+  <text x="24" y="38" class="title">内存/OOM/泄漏排查速览</text>
+
+  <rect x="24" y="60" width="260" height="140" class="box" />
+  <text x="34" y="82" class="subtitle">关键观测</text>
+  <text x="34" y="104" class="text">• oom:oom_kill → 受害者/原因</text>
+  <text x="34" y="124" class="text">• vmscan:* → 回收压力/时长</text>
+  <text x="34" y="144" class="text">• kmem/kmalloc → 分配大小分布</text>
+  <text x="34" y="164" class="text">• uprobe malloc/free → 活跃分配</text>
+
+  <rect x="320" y="60" width="260" height="140" class="box" />
+  <text x="330" y="82" class="subtitle">内核流程对应</text>
+  <text x="330" y="104" class="text">• 触发分配 → 伙伴/SLAB</text>
+  <text x="330" y="124" class="text">• 回收路径 → kswapd/direct</text>
+  <text x="330" y="144" class="text">• OOM 杀进程 → 选择victim</text>
+  <text x="330" y="164" class="text">• 用户分配生命周期 → free</text>
+
+  <rect x="610" y="60" width="260" height="140" class="box" />
+  <text x="620" y="82" class="subtitle">判断路径</text>
+  <text x="620" y="104" class="text">1. 是否回收导致抖动</text>
+  <text x="620" y="124" class="text">2. 是否进程级泄漏</text>
+  <text x="620" y="144" class="text">3. 是否内核分配异常</text>
+  <text x="620" y="164" class="text">4. 是否 OOM 救火</text>
+
+  <line x1="284" y1="130" x2="320" y2="130" class="flow"/>
+  <line x1="580" y1="130" x2="610" y2="130" class="flow"/>
+
+  <rect x="24" y="220" width="846" height="170" class="box" />
+  <text x="34" y="242" class="subtitle">常用脚本摘要</text>
+  <text x="34" y="264" class="text">• oom_kill: 统计受害者；vmscan: 直方图回收时长</text>
+  <text x="34" y="284" class="text">• kmalloc: 大小分布与栈；uprobe malloc/free 活跃表</text>
+  <text x="34" y="304" class="text">• interval+s: 打印并清理，避免 map 膨胀</text>
+  <text x="34" y="324" class="muted">提示：高QPS场景先限范围，谨慎字符串/缓冲复制长度。</text>
+</svg>

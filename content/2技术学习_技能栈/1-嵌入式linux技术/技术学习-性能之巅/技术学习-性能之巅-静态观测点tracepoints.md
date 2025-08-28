@@ -147,3 +147,42 @@ static long syscall_trace_enter(struct pt_regs *regs)
 具体的实现不需要关注, 只要知道内核是通过这种方式定义的就行. 
 
 
+# 如何查询tracepoints支持哪些? 
+
+## 支持哪些命令?
+`cat /sys/kernel/debug/tracing/events` 这个里面可以查询到
+
+**例子**: 调度相关的
+![[技术学习-性能之巅-静态观测点tracepoints-1756261908396.png]]
+
+## 具体怎么使用说明? 
+
+`cat /sys/kernel/debug/tracing/events/sched/sched_switch/format`
+
+```shell
+root@song-com:/sys/kernel/debug/tracing/events/sched/sched_switch# ls
+enable  filter  format  hist  id  trigger
+root@song-com:/sys/kernel/debug/tracing/events/sched/sched_switch# cat format 
+name: sched_switch
+ID: 323
+format:
+        field:unsigned short common_type;       offset:0;       size:2; signed:0;
+        field:unsigned char common_flags;       offset:2;       size:1; signed:0;
+        field:unsigned char common_preempt_count;       offset:3;       size:1; signed:0;
+        field:int common_pid;   offset:4;       size:4; signed:1;
+
+        field:char prev_comm[16];       offset:8;       size:16;        signed:1;
+        field:pid_t prev_pid;   offset:24;      size:4; signed:1;
+        field:int prev_prio;    offset:28;      size:4; signed:1;
+        field:long prev_state;  offset:32;      size:8; signed:1;
+        field:char next_comm[16];       offset:40;      size:16;        signed:1;
+        field:pid_t next_pid;   offset:56;      size:4; signed:1;
+        field:int next_prio;    offset:60;      size:4; signed:1;
+
+print fmt: "prev_comm=%s prev_pid=%d prev_prio=%d prev_state=%s%s ==> next_comm=%s next_pid=%d next_prio=%d", REC->prev_comm, REC->prev_pid, REC->prev_prio, (REC->prev_state & ((((0x0000 | 0x0001 | 0x0002 | 0x0004 | 0x0008 | 0x0010 | 0x0020 | 0x0040) + 1) << 1) - 1)) ? __print_flags(REC->prev_state & ((((0x0000 | 0x0001 | 0x0002 | 0x0004 | 0x0008 | 0x0010 | 0x0020 | 0x0040) + 1) << 1) - 1), "|", { 0x0001, "S" }, { 0x0002, "D" }, { 0x0004, "T" }, { 0x0008, "t" }, { 0x0010, "X" }, { 0x0020, "Z" }, { 0x0040, "P" }, { 0x0080, "I" }) : "R", REC->prev_state & (((0x0000 | 0x0001 | 0x0002 | 0x0004 | 0x0008 | 0x0010 | 0x0020 | 0x0040) + 1) << 1) ? "+" : "", REC->next_comm, REC->next_pid, REC->next_prio
+```
+
+
+可以看到 
+- 被切换线程情况: prev_comm prev_pid 
+- 切入线程情况: next_pid next_comm

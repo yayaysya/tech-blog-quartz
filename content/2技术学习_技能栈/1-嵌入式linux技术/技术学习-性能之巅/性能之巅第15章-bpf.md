@@ -131,7 +131,7 @@ PID 574947: cat is opening: /etc/ld.so.cache
 
 >[!question] pid comm str(args-filename) 这些参数, 从哪里来的? 
 
-#todo 
+
 ```shell
 #查询方法
 bpftrace -lv 'tracepoint:syscalls:sys_enter_openat'
@@ -802,8 +802,8 @@ interval:s:__DUR__ {
 
 ## bpftrace 作为类shell语法, 语法规则是什么? 
 
-bpftrace语言相对简单, 可以学习这个教程方便后面快速的去观察内核的行为
-[[技术学习-性能之巅-bpftrace具体教程]]
+bpftrace语言相对简单, 可以学习这个教程方便后面快速的去观察内核的行为, 可以参考下面的文档
+- [[bpftrace语法手册]]
 
 
 
